@@ -38,3 +38,5 @@ bot.help((ctx) => {
     ctx.reply("I can tell you your fortune. Simply send me a message 'fortune'")
 
 })
+
+bot.launch()
