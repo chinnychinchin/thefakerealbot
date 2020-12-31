@@ -6,9 +6,6 @@ const BOT_TOKEN = process.env.BOT_TOKEN
 const bot = new Telegraf(BOT_TOKEN)
 
 
-bot.start((ctx) => ctx.reply("Welcome to Chins' fortune bot"))
-
-
 bot.hears(new RegExp("fortune", "i"), (ctx) => {
 
     const [cookie] = xNumOfCookies(1)
@@ -34,14 +31,15 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
   
 
 //Inline keyboard menu
-const menuTemplate = new MenuTemplate(ctx => "Hi there! I am your fortune-teller. Simply hit the button below to generate a fortune-cookie!")
+const menuTemplate = new MenuTemplate(ctx => `Hi there! Welcome to Chinnnychinchin's fortune-cookie bot. Simply hit the button below to generate a fortune-cookie or send me a query like "fortune".`)
 
 menuTemplate.interact('Give me a cookie!', 'a', {
-do: ctx => ctx.reply(xNumOfCookies(1)[0])
+do: async ctx => ctx.reply(xNumOfCookies(1)[0])
 })
 
 const menuMiddleware = new MenuMiddleware('/', menuTemplate)
 bot.command('help', ctx => menuMiddleware.replyToContext(ctx))
+bot.command('start', ctx => menuMiddleware.replyToContext(ctx))
 bot.use(menuMiddleware)
 
 
