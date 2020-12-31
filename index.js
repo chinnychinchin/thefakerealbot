@@ -39,4 +39,11 @@ bot.help((ctx) => {
 
 })
 
-bot.launch()
+const PORT = process.env.PORT
+
+bot.launch({
+    webhook: {
+      domain: 'https://thefakerealbot.herokuapp.com/',
+      port: PORT
+    }
+  })
