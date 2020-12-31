@@ -34,10 +34,10 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
   
 
 //Inline keyboard menu
-const menuTemplate = new MenuTemplate(ctx => `Generate`)
+const menuTemplate = new MenuTemplate(ctx => "Hi there! I am your fortune-teller. Simply hit the button below to generate a fortune-cookie!")
 
-menuTemplate.interact('I am excited!', 'a', {
-do: async ctx => ctx.reply('As am I!')
+menuTemplate.interact('Give me a cookie!', 'a', {
+do: ctx => ctx.reply(xNumOfCookies(1)[0])
 })
 
 const menuMiddleware = new MenuMiddleware('/', menuTemplate)
