@@ -1,5 +1,6 @@
 const {Telegraf, Markup} = require('telegraf');
-const {xNumOfCookies} = require('./fortune-cookie')
+const {xNumOfCookies} = require('./fortune-cookie');
+const {MenuTemplate, MenuMiddleware} = require('telegraf-inline-menu')
 
 const BOT_TOKEN = process.env.BOT_TOKEN
 const bot = new Telegraf(BOT_TOKEN)
@@ -31,20 +32,23 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
     
   })
   
-  const replyOptions = Markup.inlineKeyboard([
-    //Markup.button.url('❤️', 'http://telegraf.js.org'),
-    Markup.button('Generate')
-    
-  ])
 
+//Inline keyboard menu
+const menuTemplate = new MenuTemplate(ctx => `Generate`)
 
-bot.help((ctx) => {
-
-    //ctx.reply("I can give you a fortune-cookie. Simply hit the button below")
-    ctx.replyWithMarkdown("Generate", {reply_markup: Markup.inlineKeyboard([Markup.button.url("go", "www.google.com")])})
-
+menuTemplate.interact('I am excited!', 'a', {
+do: async ctx => ctx.reply('As am I!')
 })
 
+const menuMiddleware = new MenuMiddleware('/', menuTemplate)
+bot.command('help', ctx => menuMiddleware.replyToContext(ctx))
+bot.use(menuMiddleware)
+
+
+
+
+
+//Start bot
 const PORT = process.env.PORT
 
 bot.launch({
