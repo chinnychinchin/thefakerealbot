@@ -5,11 +5,6 @@ const BOT_TOKEN = process.env.BOT_TOKEN
 const bot = new Telegraf(BOT_TOKEN)
 
 
-const keyboard = Markup.keyboard([
-    Markup.button.pollRequest('Create poll', 'regular'),
-    Markup.button.pollRequest('Create quiz', 'quiz')
-  ])
-
 bot.start((ctx) => ctx.reply("Welcome to Chins' fortune bot"))
 
 
@@ -41,7 +36,7 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
 bot.help((ctx) => {
 
     //ctx.reply("I can give you a fortune-cookie. Simply hit the button below")
-    ctx.replyWithMarkdown("I can give you a fortune-cookie. Simply hit the button below", keyboard)
+    ctx.replyWithMarkdown("I can give you a fortune-cookie. Simply hit the button below", Markup.inlineKeyboard([{"text": "Generate", "url": "www.google.com"}]))
 
 })
 
