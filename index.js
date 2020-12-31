@@ -1,4 +1,4 @@
-const {Telegraf} = require('telegraf');
+const {Telegraf, Markup} = require('telegraf');
 const {xNumOfCookies} = require('./fortune-cookie')
 
 const BOT_TOKEN = process.env.BOT_TOKEN
@@ -35,7 +35,8 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
 
 bot.help((ctx) => {
 
-    ctx.reply("I can tell you your fortune. Simply send me a message 'fortune'")
+    //ctx.reply("I can give you a fortune-cookie. Simply hit the button below")
+    ctx.replyWithMarkdown("I can give you a fortune-cookie. Simply hit the button below", {"text": "Generate", "url": "www.google.com"})
 
 })
 
