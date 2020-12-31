@@ -36,7 +36,7 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
 bot.help((ctx) => {
 
     //ctx.reply("I can give you a fortune-cookie. Simply hit the button below")
-    ctx.replyWithMarkdown("I can give you a fortune-cookie. Simply hit the button below", {"text": "Generate", "url": "www.google.com"})
+    ctx.replyWithMarkdown("I can give you a fortune-cookie. Simply hit the button below", [{"inline_keyboard": {"text": "Generate", "url": "www.google.com"}}])
 
 })
 
