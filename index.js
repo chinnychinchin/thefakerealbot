@@ -37,7 +37,8 @@ menuTemplate.interact('Give me a cookie!', 'a', {
 do: async ctx => { 
     
     const [cookie] = xNumOfCookies(1)
-    ctx.reply(cookie) 
+    ctx.reply(cookie)
+    return false 
 
 }
 })
