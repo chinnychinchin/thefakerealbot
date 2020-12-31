@@ -34,7 +34,7 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
 const menuTemplate = new MenuTemplate(ctx => `Hi there! Welcome to Chinnnychinchin's fortune-cookie bot. Simply hit the button below to generate a fortune-cookie or send me a query like "fortune".`)
 
 menuTemplate.interact('Give me a cookie!', 'a', {
-do: async ctx => ctx.reply(xNumOfCookies(1)[0])
+do: async ctx => { return ctx.reply(xNumOfCookies(1)[0]) }
 })
 
 const menuMiddleware = new MenuMiddleware('/', menuTemplate)
