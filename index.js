@@ -32,8 +32,8 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
   })
   
   const replyOptions = Markup.inlineKeyboard([
-    Markup.button.url('❤️', 'http://telegraf.js.org'),
-    Markup.button.text('Generate')
+    //Markup.button.url('❤️', 'http://telegraf.js.org'),
+    Markup.button('Generate')
     
   ])
 
@@ -41,7 +41,7 @@ bot.on('inline_query', async ({ inlineQuery, answerInlineQuery }) => {
 bot.help((ctx) => {
 
     //ctx.reply("I can give you a fortune-cookie. Simply hit the button below")
-    ctx.replyWithMarkdown("Markdown", replyOptions)
+    ctx.replyWithMarkdown("Generate", [{message_text: "Generate", reply_markup: Markup.inlineKeyboard([Markup.button.url("www.google.com"), Markup.button.text("Generate")])}])
 
 })
 
