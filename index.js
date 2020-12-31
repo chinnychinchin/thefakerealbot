@@ -1,21 +1,12 @@
 const {Telegraf} = require('telegraf');
 const {xNumOfCookies} = require('./fortune-cookie')
-const express = require('express')
-const expressApp = express()
-
 
 const BOT_TOKEN = process.env.BOT_TOKEN
 const bot = new Telegraf(BOT_TOKEN)
 
-expressApp.use(bot.webhookCallback(`/${BOT_TOKEN}`))
-
-expressApp.get('/', (req, res) => res.send('Hello World!'))
-
-bot.telegram.setWebhook(`https://mybotwebhook.com/${BOT_TOKEN}`)
 
 bot.start((ctx) => ctx.reply("Welcome to Chins' fortune bot"))
 
-bot.on('text', ({ replyWithHTML }) => replyWithHTML('<b>Hello</b>'))
 
 bot.hears(new RegExp("fortune", "i"), (ctx) => {
 
@@ -47,5 +38,3 @@ bot.help((ctx) => {
     ctx.reply("I can tell you your fortune. Simply send me a message 'fortune'")
 
 })
-
-expressApp.listen(3000, () => { console.log(`App started on port 3000 at ${new Date()}`)})
